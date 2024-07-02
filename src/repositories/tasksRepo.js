@@ -8,7 +8,7 @@ const create = async ({title, description, status}) => {
 }
 
 const all = async () => {
-  const query = `select * from tasks`;
+  const query = `select t.*, s.title as status from tasks t, status s where t.status_id=s.id`;
   return getDataBaseConnection()
     .query(query)
     .then(({rows}) => rows)

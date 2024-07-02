@@ -9,6 +9,9 @@ const handler = nc({
   },
   onNoMatch: (req, res) => res.status(404).json({ message: "Not found" }),
 })
+  .get((req, res) =>
+    TasksRepo.all().then((tasks) => res.json(tasks))
+  )
   .post((req, res) => {
     const {title, description, status} = req.body
     return TasksRepo.create({title, description, status})
