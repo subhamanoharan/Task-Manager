@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Task from '@/components/Task'
 import AddTask from '@/components/AddTask'
-import EditTask from '@/components/EditTask'
 
 import TasksServive from '@/services/tasksService'
 import StatusService from '@/services/statusService'
@@ -27,14 +26,7 @@ const TasksList = () => {
   return (
     <div className="grid grid-cols-10 gap-3">
       <div className="col-span-9 grid grid-cols-4	gap-3	">
-        {tasks.map(t => (
-          <div key={t.id} className="bg-blue-400 p-2 rounded grid">
-            <Task key={t.id} task={t} />
-            <div className="self-end">
-              <EditTask task={t} onSuccess={refreshTasks}/>
-            </div>
-          </div>
-        ))}
+        {tasks.map(t => (<Task key={t.id} task={t} refreshTasks={refreshTasks}/>))}
       </div>
       <div className="self-start">
         <AddTask onSuccess={refreshTasks}/>
