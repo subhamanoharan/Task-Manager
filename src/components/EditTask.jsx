@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux'
@@ -8,17 +8,18 @@ import Modal from './modal';
 import TaskService from '@/services/tasksService';
 import { selectAllStatus } from '@/redux/reducers/statusSlice'
 
-const AddTask = ({ onSuccess }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const status_options = useSelector(selectAllStatus)
-  const [status, setStatus] = useState(status_options[0]);
+
+const EditTask = ({ task, onSuccess }) => {
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [status, setStatus] = useState(task.status);
   const [isOpen, setIsOpen] = useState("");
   const [error, setError] = useState();
+  const status_options = useSelector(selectAllStatus)
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  const addTask = async (e) => {
+  const editTask = async (e) => {
     event.preventDefault();
 
     let schema = yup.object().shape({
@@ -26,6 +27,7 @@ const AddTask = ({ onSuccess }) => {
       description: yup.string().trim().required("You must enter a description."),
       status: yup.string().oneOf(status_options).required("You must enter a status."),
     });
+
     const isValid = await schema.validate({ title, description, status }).catch(function (err) {
       setError(err.errors.join("<br>"));
     });
@@ -35,15 +37,15 @@ const AddTask = ({ onSuccess }) => {
     }
 
     setError()
-    TaskService.create({title, description, status})
+    TaskService.update(task.id, {title, description, status})
       .then(closeModal)
       .then(onSuccess)
-      .catch(() => setError('Failed to add new task'))
+      .catch(() => setError('Failed to edit task'))
   }
 
   return (<>
-    <button onClick={openModal} className="bg-green-500 text-white p-3 rounded-full">
-      Add Task
+    <button onClick={openModal} className="float-right bg-green-500 text-white p-2 rounded-full">
+      <FontAwesomeIcon icon={faPen}/>
     </button>
     { isOpen &&
     <Modal closeModal={closeModal} customStyles = {{wrapper: 'w-full left-0', modal: 'w-1/2'}}>
@@ -66,9 +68,8 @@ const AddTask = ({ onSuccess }) => {
           type="text"
           style={{ height: 100 }}
           maxLength={500}
-          value={description}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          onChange={(e) => setDescription(e.target.value)}>
+          onChange={(e) => setDescription(e.target.value.trim())}>
           {description}</textarea>
       </div>
       <div className="flex flex-col justify-around w-full">
@@ -92,7 +93,7 @@ const AddTask = ({ onSuccess }) => {
       </div>}
       <div className="flex justify-center md:justify-end">
         <div className="modal-submit-button">
-            <button className="cta cta-dark" onClick={(e) => addTask(e)} type="submit">Add</button>
+            <button className="cta cta-dark" onClick={(e) => editTask(e)} type="submit">Update</button>
         </div>
       </div>
     </Modal>
@@ -100,4 +101,4 @@ const AddTask = ({ onSuccess }) => {
   </>)
 }
 
-export default AddTask;
+export default EditTask;

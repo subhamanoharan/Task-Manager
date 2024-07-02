@@ -1,9 +1,13 @@
-const Task = ({ task : {title, description, status} }) =>(
-  <div className="bg-blue-200 p-2">
-    <p>{title}</p>
-    <p>{description}</p>
-    <p>{status}</p>
-  </div>
-)
+const Task = ({ task : {title, description, status} }) =>{
+  return (
+    <div className="">
+      <div className="grid grid-cols-2">
+        <div className="underline decoration-solid">{title}</div>
+        <span className="bg-green-200 rounded p-1 text-center">{status}</span>
+      </div>
+      <p className="line-clamp-2">{description}</p>
+    </div>
+  )
+}
 
 export default Task;
