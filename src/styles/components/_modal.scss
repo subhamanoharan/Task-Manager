@@ -1,0 +1,31 @@
+.modal-wrapper {
+    @apply absolute h-full top-0 z-50 w-full flex justify-center items-center;
+    background: rgba(0,0,0,0.5);
+    overflow-y:scroll;
+
+    .modal {
+        @apply absolute bg-white shadow-lg;
+        overflow: scroll;
+        max-height: 100%;
+        margin: 10px;
+
+        &.small {
+            @apply max-w-lg;
+        }
+
+        .modal-exit {
+            @apply relative p-2 float-right	;
+        }
+        .modal-content {
+            @apply p-2;
+
+            @screen sm {
+                @apply p-6;
+            }
+        }
+
+        .modal-submit-button {
+            @apply flex justify-end;
+        }
+    }
+}

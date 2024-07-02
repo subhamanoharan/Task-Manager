@@ -1,0 +1,86 @@
+.cta {
+    @apply inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white my-4 mx-2 cursor-pointer;
+
+    &.cta-nav {
+        @apply mx-0 px-0 py-2 my-2 border-0;
+
+        &:hover {
+            @apply underline;
+        }
+
+        @screen lg {
+            @apply mx-2 py-2 px-4  border;
+        }
+    }
+
+    &.cta-dark {
+        @apply text-black border-black;
+
+        &:hover {
+            @apply border-opacity-0 text-white bg-teal-500;
+        }
+    }
+
+    &.cta-filled {
+        @apply border-none bg-red-400;
+
+        &.blue {
+            @apply border-none bg-blue-400 text-white;
+
+            &:hover {
+                @apply bg-blue-600;
+            }
+        }
+
+
+    }
+
+    &.cta-lg {
+        @apply text-base py-4 px-8;
+    }
+
+    &.cta-sm {
+        @apply text-base py-2 px-4;
+    }
+
+    &.cta-lg-text {
+        @apply text-lg;
+    }
+
+    &.cta-inline {
+        @apply inline;
+    }
+
+    &.cta-nomargin {
+        @apply m-0;
+    }
+
+    @screen lg {
+        &:hover {
+            @apply bg-teal-500 border-opacity-0 ;
+            color: white !important;
+        }
+    }
+
+    &.cta-lghidden {
+        @screen lg {
+            @apply hidden;
+        }
+    }
+
+    &:hover {
+        @apply text-teal-500 border-teal-500;
+    }
+
+    &.disabled {
+        @apply border-gray-500 text-gray-500;
+
+        &:hover {
+            @apply bg-white;
+            @apply border-gray-500;
+            color: #a0aec0 !important;
+            cursor: default;
+        }
+    }
+
+}
