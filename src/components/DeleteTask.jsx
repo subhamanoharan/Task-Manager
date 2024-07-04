@@ -20,7 +20,7 @@ const DeleteTask = ({ task, onSuccess }) => {
     event.preventDefault();
 
     setError()
-    TaskService.delete(task.id)
+    TaskService.remove(task.id)
       .then(closeModal)
       .then(onSuccess)
       .catch(() => setError('Failed to delete task'))

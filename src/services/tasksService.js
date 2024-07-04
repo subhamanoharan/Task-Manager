@@ -16,4 +16,8 @@ const edit = (id, task) =>
   axios.put(`/api/tasks/${id}`, task)
     .then((response) => response.data)
 
-export default { list, get, create, edit };
+const remove = (id) =>
+  axios.delete(`/api/tasks/${id}`)
+    .then((response) => response.data)
+
+export default { list, get, create, edit, remove };

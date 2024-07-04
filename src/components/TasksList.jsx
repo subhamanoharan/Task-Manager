@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import * as _ from 'lodash'
 import Task from '@/components/Task'
 import AddTask from '@/components/AddTask'
 
@@ -21,6 +21,7 @@ const TasksList = () => {
 
   const refreshTasks = () => {
     TasksServive.list()
+      .then(tasks => _.sortBy(tasks, [({title}) => title.toUpperCase()]))
       .then((tasks) => dispatch(refresh(tasks)))
   }
   return (

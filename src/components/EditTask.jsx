@@ -37,7 +37,7 @@ const EditTask = ({ task, onSuccess }) => {
     }
 
     setError()
-    TaskService.update(task.id, {title, description, status})
+    TaskService.edit(task.id, {title, description, status})
       .then(closeModal)
       .then(onSuccess)
       .catch(() => setError('Failed to edit task'))
