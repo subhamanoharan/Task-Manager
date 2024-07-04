@@ -44,7 +44,7 @@ const EditTask = ({ task, onSuccess }) => {
   }
 
   return (<>
-    <button onClick={openModal} className="float-right bg-green-500 text-white p-2 rounded-full">
+    <button onClick={openModal} className="bg-green-500 text-white rounded-full">
       <FontAwesomeIcon icon={faPen}/>
     </button>
     { isOpen &&

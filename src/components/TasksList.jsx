@@ -25,7 +25,7 @@ const TasksList = () => {
   }
   return (
     <div className="grid grid-cols-10 gap-3">
-      <div className="col-span-9 grid grid-cols-4	gap-3	">
+      <div className="col-span-9 grid grid-cols-4	gap-4">
         {tasks.map(t => (<Task key={t.id} task={t} refreshTasks={refreshTasks}/>))}
       </div>
       <div className="self-start">
