@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 import Task from '@/components/Task'
 import AddTask from '@/components/AddTask'
+import FilterTasks from '@/components/FilterTasks'
 
 import TasksServive from '@/services/tasksService'
 import StatusService from '@/services/statusService'
-import { refresh, selectAllTasks } from '@/redux/reducers/tasksSlice'
+import { refresh, selectTasksToShow } from '@/redux/reducers/tasksSlice'
 import { refresh as refreshStatus } from '@/redux/reducers/statusSlice'
 
 const TasksList = () => {
   const dispatch = useDispatch()
-  const tasks = useSelector(selectAllTasks)
+  const tasks = useSelector(selectTasksToShow)
 
   useEffect(() => {
     refreshTasks()
@@ -31,6 +32,7 @@ const TasksList = () => {
       </div>
       <div className="self-start">
         <AddTask onSuccess={refreshTasks}/>
+        <FilterTasks />
       </div>
     </div>
   )

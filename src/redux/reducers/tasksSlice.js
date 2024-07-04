@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = {
+  data: [],
+  filters: {}
+}
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -8,16 +11,29 @@ const tasksSlice = createSlice({
   reducers: {
     refresh(state, action) {
       const tasks = action.payload
-      return tasks
+      state.data = tasks
+    },
+    setStatusTaskFilter(state, action) {
+      const status = action.payload
+      state.filters = {...state.filters, status}
     }
   }
 })
 
-export const { refresh } = tasksSlice.actions
+export const { refresh, setStatusTaskFilter } = tasksSlice.actions
 
 export default tasksSlice.reducer
 
-export const selectAllTasks = (state) => state.tasks
+export const selectTasksToShow = (state) => {
+  const {tasks: {data, filters: {status: statusFilter}}} = state
+  return statusFilter ?
+    data.filter(t => t.status === statusFilter) : data
+}
+
+export const selectAllTasks = (state) => state.tasks.data
+
+export const selectStatusFilter = (state, id) =>
+  state.tasks.filters.status
 
 export const selectTaskById = (state, id) =>
-  state.tasks.find((t) => t.id === id)
+  state.tasks.data.find((t) => t.id === id)
