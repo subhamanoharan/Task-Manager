@@ -18,6 +18,13 @@ const AddTask = ({ onSuccess }) => {
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
+  const clearForm = () => {
+    closeModal()
+    setTitle()
+    setDescription()
+    setStatus()
+  }
+
   const addTask = async (e) => {
     event.preventDefault();
 
@@ -36,7 +43,7 @@ const AddTask = ({ onSuccess }) => {
 
     setError()
     TaskService.create({title, description, status})
-      .then(closeModal)
+      .then(clearForm)
       .then(onSuccess)
       .catch(() => setError('Failed to add new task'))
   }
