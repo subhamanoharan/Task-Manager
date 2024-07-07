@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full grid grid-cols-4 px-12 bg-blue-500">
-      <p className="justify-self-center col-span-3	text-white text-lg self-center">Task Manager</p>
+      <p className="justify-self-center font-extrabold	tracking-widest	col-span-3	text-white text-lg self-center">Task Manager</p>
       <button
         className="justify-self-end	bg-green-500 text-white p-3 my-1"
         onClick={logout}

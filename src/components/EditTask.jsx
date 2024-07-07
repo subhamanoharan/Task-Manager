@@ -23,7 +23,7 @@ const EditTask = ({ task, onSuccess }) => {
     setDescription(task.description)
     setStatus(task.status)
   }
-  
+
   useEffect(() => {
     setTitle(task.title)
     setDescription(task.description)
@@ -59,7 +59,7 @@ const EditTask = ({ task, onSuccess }) => {
       <FontAwesomeIcon icon={faPen}/>
     </button>
     { isOpen &&
-    <Modal closeModal={closeModal} customStyles = {{wrapper: 'w-full left-0', modal: 'w-1/2'}}>
+    <Modal closeModal={closeModal} customStyles = {{wrapper: 'w-full left-0', modal: 'md:w-1/2 md:top-1/4 w-3/4 top-4'}}>
       <div className="flex flex-col justify-around w-full">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Title

@@ -31,7 +31,7 @@ const DeleteTask = ({ task, onSuccess }) => {
       <FontAwesomeIcon icon={faMinus}/>
     </button>
     { isOpen &&
-    <Modal closeModal={closeModal} customStyles = {{wrapper: 'w-full left-0', modal: 'w-1/2'}}>
+    <Modal closeModal={closeModal} customStyles = {{wrapper: 'w-full left-0', modal: 'md:w-1/2 top-1/4 w-3/4 '}}>
       <div className="flex flex-col justify-around w-full">
         {`Are you sure you want to delete ${task.title} ?`}
       </div>

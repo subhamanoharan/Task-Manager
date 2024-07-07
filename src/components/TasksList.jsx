@@ -28,13 +28,13 @@ const TasksList = () => {
       .catch(() => {})
   }
   return (
-    <div className="grid grid-cols-10 gap-3">
-      <div className="col-span-9 grid grid-cols-4	gap-4">
-        {tasks.map(t => (<Task key={t.id} task={t} refreshTasks={refreshTasks}/>))}
-      </div>
-      <div className="self-start">
-        <AddTask onSuccess={refreshTasks}/>
+    <div className="w-full grid md:grid-cols-10 grid-cols-4 gap-3">
+      <div className="justify-self-end col-span-4 md:col-span-10">
         <FilterTasks />
+        <AddTask onSuccess={refreshTasks}/>
+      </div>
+      <div className="md:col-span-9 col-span-4 grid md:grid-cols-3 grid-cols-1	gap-4">
+        {tasks.map(t => (<Task key={t.id} task={t} refreshTasks={refreshTasks}/>))}
       </div>
     </div>
   )

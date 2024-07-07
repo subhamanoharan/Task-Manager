@@ -10,18 +10,18 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
   const router = useRouter();
-  // const dispatch = useDispatch()
-  //
-  // useEffect(() => {
-  //   usersService.getUser()
-  //     .then(() => {
-  //       router.push('/')
-  //       dispatch(loginUser())
-  //     })
-  //     .catch(() => {
-  //       dispatch(logoutUser())
-  //     })
-  // }, [])
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    usersService.getUser()
+      .then(() => {
+        router.push('/')
+        dispatch(loginUser())
+      })
+      .catch(() => {
+        dispatch(logoutUser())
+      })
+  }, [])
 
   const login = async (e) => {
     event.stopPropagation();
@@ -36,11 +36,11 @@ export default function Login() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 bg-blue-200 text-white`}
+      className={`flex min-h-screen md:flex-col items-center justify-between md:p-24 bg-blue-200 text-white`}
     >
-        <div className="flex flex-col w-1/2 border border-blue-600 p-4 rounded bg-blue-400">
+        <div className="flex flex-col md:w-1/2 w-full border border-blue-600 p-4 rounded bg-blue-400">
           <label className="self-center block uppercase tracking-wide font-bold mb-2">
-              LOGIN
+              Task Manager
           </label>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Name
