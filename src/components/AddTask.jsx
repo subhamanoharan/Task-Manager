@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as yup from 'yup';
@@ -16,10 +16,12 @@ const AddTask = ({ onSuccess }) => {
   const [isOpen, setIsOpen] = useState("");
   const [error, setError] = useState();
   const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const closeModal = () => clearForm()
+
+  useEffect(() => setStatus(status_options[0]), [status_options])
 
   const clearForm = () => {
-    closeModal()
+    setIsOpen(false)
     setTitle()
     setDescription()
     setStatus()
@@ -75,8 +77,7 @@ const AddTask = ({ onSuccess }) => {
           maxLength={500}
           value={description}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          onChange={(e) => setDescription(e.target.value)}>
-          {description}</textarea>
+          onChange={(e) => setDescription(e.target.value)}/>
       </div>
       <div className="flex flex-col justify-around w-full">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

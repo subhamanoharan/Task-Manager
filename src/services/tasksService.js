@@ -1,23 +1,25 @@
-import axios from 'axios';
+import axiosHelper from '@/lib/axiosHelper'
+
+const axiosInstance = axiosHelper.getInstance();
 
 const list = () =>
-  axios.get('/api/tasks')
+  axiosInstance.get('/tasks')
     .then((response) => response.data)
 
 const get = (id) =>
-  axios.get(`/api/tasks/${id}`)
+  axiosInstance.get(`/tasks/${id}`)
     .then((response) => response.data)
 
 const create = (task) =>
-  axios.post('/api/tasks', task)
+  axiosInstance.post('/tasks', task)
     .then((response) => response.data)
 
 const edit = (id, task) =>
-  axios.put(`/api/tasks/${id}`, task)
+  axiosInstance.put(`/tasks/${id}`, task)
     .then((response) => response.data)
 
 const remove = (id) =>
-  axios.delete(`/api/tasks/${id}`)
+  axiosInstance.delete(`/tasks/${id}`)
     .then((response) => response.data)
 
 export default { list, get, create, edit, remove };

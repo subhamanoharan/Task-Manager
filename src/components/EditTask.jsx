@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as yup from 'yup';
@@ -17,7 +17,18 @@ const EditTask = ({ task, onSuccess }) => {
   const [error, setError] = useState();
   const status_options = useSelector(selectAllStatus)
   const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const closeModal = () => {
+    setIsOpen(false)
+    setTitle(task.title)
+    setDescription(task.description)
+    setStatus(task.status)
+  }
+  
+  useEffect(() => {
+    setTitle(task.title)
+    setDescription(task.description)
+    setStatus(task.status)
+  }, [task])
 
   const editTask = async (e) => {
     event.preventDefault();

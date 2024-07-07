@@ -18,12 +18,14 @@ const TasksList = () => {
     refreshTasks()
     StatusService.list()
       .then((status) => dispatch(refreshStatus(status.map(({title}) => title))))
+      .catch(() => {})
   }, [])
 
   const refreshTasks = () => {
     TasksServive.list()
       .then(tasks => _.sortBy(tasks, [({title}) => title.toUpperCase()]))
       .then((tasks) => dispatch(refresh(tasks)))
+      .catch(() => {})
   }
   return (
     <div className="grid grid-cols-10 gap-3">

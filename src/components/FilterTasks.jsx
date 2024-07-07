@@ -15,7 +15,7 @@ const FilterTasks = ({ onSuccess }) => {
   const selectedOption = useSelector(selectStatusFilter)
 
   const onFilterBy = (o) => dispatch(setStatusTaskFilter(o))
-  console.log('selectedOption', selectedOption)
+  
   return (
     <Dropdown
       title={() => (<FontAwesomeIcon icon={faFilter}/>)}
