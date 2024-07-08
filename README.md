@@ -1,24 +1,17 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# How to run the application
 
-First, run the development server:
+- Run `npm install` to install the dependencies
+- Create a postgres database and add the DATABSE_URL to a .env file like `DATABASE_URL=postgres://postgres:postgres@localhost:5432/task-manager`
+- Run `npm run db-migrate up` to run the database migrations and set up seed data. To connect to local postgres server, config.ssl is set to false in repositories/db.js
+- Run `npm run dev` to start the development server
+- Go to `http://localhost:3000/` to view the website.
+- Use the seed users:
+	- username: admin, password: admin
+	- username: user1, password: user1
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+  [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
